@@ -22,9 +22,11 @@ A practical tutorial to RShiny
 5. Output Text Formatting: renderUI + tagList + p + strong
 
 **MODULE 5: DataGenV5**
-1. Separate ui.R into multiple files
-2. Separate server.R into multiple files
-3. Modularity (partials) in RShiny
-4. DT
-5. Drill down and ShinyJS
-6. CSS styles
+1. Code Organization: Separate ui.R into multiple files
+2. Code Organization: Separate server.R into multiple files
+3. App Organization: Modularity (partials) in RShiny
+4. I/O Components: DT
+5. Functionality: Drill down and ShinyJS
+6. Functionality: CSS styles
+7. Functionality: updateTextInput
+8. Reactivity: Render based on button press
