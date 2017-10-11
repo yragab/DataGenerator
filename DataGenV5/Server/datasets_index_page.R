@@ -2,8 +2,8 @@
 
 loadDatasetsIndexPage <- function(input, output, reactive_variables) {
   
-  # Render Data table
-  output$builtin_datasets_table = renderDataTable(
+  # Render Data table for builtin datasets
+  output$builtin_datasets_table = renderDataTable({
     datatable(getBuiltinDatasetDetails(),
               rownames = TRUE,
               selection = 'none') %>%
@@ -11,11 +11,12 @@ loadDatasetsIndexPage <- function(input, output, reactive_variables) {
         "dataset",
         cursor = 'pointer',
         color = "blue"
-      )
+      )}
   )
   
-  # Render Data table
-  output$created_datasets_table = renderDataTable(
+  # Render Data table for created datasets establishing reactive dependence on saving a new dataset
+  output$created_datasets_table = renderDataTable({
+    input$save_dataset
     datatable(getCreatedDatasets(),
               rownames = TRUE,
               selection = 'none') %>%
@@ -23,10 +24,10 @@ loadDatasetsIndexPage <- function(input, output, reactive_variables) {
         "dataset",
         cursor = 'pointer',
         color = "blue"
-      )
+      )}
   )
   
-
+  # Drill down when a built in dataset is clicked
   observeEvent(input$builtin_datasets_table_cell_clicked, {
     cell.details = input$builtin_datasets_table_cell_clicked
     clicked.value = cell.details$value
@@ -39,6 +40,7 @@ loadDatasetsIndexPage <- function(input, output, reactive_variables) {
     }
   })
   
+  # Drill down when a custom dataset is clicked
   observeEvent(input$created_datasets_table_cell_clicked, {
     cell.details = input$created_datasets_table_cell_clicked
     clicked.value = cell.details$value
